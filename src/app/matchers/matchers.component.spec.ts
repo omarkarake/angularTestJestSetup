@@ -8,9 +8,8 @@ describe('MatchersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MatchersComponent]
-    })
-    .compileComponents();
+      declarations: [MatchersComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MatchersComponent);
     component = fixture.componentInstance;
@@ -23,6 +22,12 @@ describe('MatchersComponent', () => {
 
   // exact equality
   it('two plus two is four', () => {
-    expect(2+2).toBe(4);
+    expect(2 + 2).toBe(4);
+  });
+
+  // check for values
+  it('Object value', () => {
+    const data = { name: 'omarion' };
+    expect(data).toEqual({ name: 'omarion' });
   });
 });
