@@ -9,9 +9,7 @@
       "node"
     ]
   },
-  "files": [
-    "src/setup.jest.ts"
-  ],
+  "files": ["src/setupJest.ts"],
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
