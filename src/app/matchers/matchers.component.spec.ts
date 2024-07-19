@@ -71,4 +71,16 @@ describe('MatchersComponent', () => {
     expect(shoppingList).toContain('milk');
     expect(new Set(shoppingList)).toContain('milk');
   });
+
+  //exceptions
+  it('compiling android goes as expected', () => {
+    expect(() => component.compilerAndroidCode()).toThrow();
+    expect(() => component.compilerAndroidCode()).toThrow(Error);
+
+    //you can also use the exact error message or a regex
+    expect(() => component.compilerAndroidCode()).toThrow(
+      'you are using old angular'
+    );
+    // expect(() => component.compilerAndroidCode()).toThrow(/Angular/);
+  });
 });
