@@ -25,9 +25,19 @@ describe('MatchersComponent', () => {
     expect(2 + 2).toBe(4);
   });
 
-  // check for values
+  // Object testing
   it('Object value', () => {
     const data = { name: 'omarion' };
     expect(data).toEqual({ name: 'omarion' });
   });
+
+  // Truthiness
+  it('null', ()=>{
+    const n = null;
+    expect(n).not.toBeNull();
+    // expect(n).toBeDefined();
+    // expect(n).toBeUndefined();
+    // expect(n).toBeTruthy();
+    // expect(n).toBeFalsy();
+  })
 });
