@@ -9,6 +9,7 @@ describe('FakeService', () => {
   beforeEach(() => {
     httpClientSpy = {
       get: jest.fn(), // this is way to mock a function in jest
+      post: jest.fn(),
     };
     service = new FakeService(httpClientSpy);
   });
@@ -60,5 +61,14 @@ describe('FakeService', () => {
     }); //triggering method in service
     expect(httpClientSpy.get).toBeCalledTimes(1);
     expect(httpClientSpy.get).toHaveBeenCalledWith(url);
+  });
+  // post call
+  it('should test postDatav1', () => {
+    const command = 'testing';
+    const res = 'Techopsworld';
+    const url = 'https://jsonplaceholder.typicode.com/todos/1';
+    jest.spyOn(httpClientSpy, 'post').mockReturnValue(of(res));
+    service.postDatav1(command);
+    expect(httpClientSpy.post).toBeCalledTimes(1);
   });
 });
