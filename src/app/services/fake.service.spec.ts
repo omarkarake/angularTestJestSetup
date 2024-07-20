@@ -24,4 +24,20 @@ describe('FakeService', () => {
     expect(httpClientSpy.get).toBeCalledTimes(1);
     expect(httpClientSpy.get).toHaveBeenCalledWith(url);
   });
+
+  it('should test getDataV1', (done) => {
+    const res = 'Techpsworld';
+    const url = 'https://jsonplaceholder.typicode.com/todos/1';
+    jest.spyOn(httpClientSpy, 'get').mockReturnValue(of(res));
+    service.getDatav2().subscribe(
+      {
+        next: data => {
+          expect(data).toEqual(res);
+          done();
+        }
+      }
+    ); //triggering method in service
+    expect(httpClientSpy.get).toBeCalledTimes(1);
+    expect(httpClientSpy.get).toHaveBeenCalledWith(url);
+  });
 });
