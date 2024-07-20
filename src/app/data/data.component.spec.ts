@@ -2,8 +2,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DataComponent } from './data.component';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { FakeService } from '../services/fake.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('DataComponent', () => {
   let component: DataComponent;
@@ -35,5 +36,18 @@ describe('DataComponent', () => {
     jest.spyOn(fakeServiceMock, 'getDatav1').mockReturnValue(of(expectedRes));
     fixture.detectChanges();
     expect(component.serviceData.name).toBe(expectedRes.name);
+  });
+  
+  it('should getServiceData set errorMessage', () => {
+    const errorResponse = new HttpErrorResponse({
+      error: 'test 404 error',
+      status: 404, 
+      statusText: 'Not Found'
+    })
+    jest.spyOn(fakeServiceMock, 'getDatav1').mockReturnValue(throwError(() => errorResponse));
+    // firstly it was being triggered by ngOnInit in data component
+    // let's trigger it directly
+    component.getServiceData();
+    expect(component.errorMessage).toBe('Not Found')
   });
 });
