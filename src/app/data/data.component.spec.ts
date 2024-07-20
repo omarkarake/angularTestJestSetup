@@ -50,4 +50,34 @@ describe('DataComponent', () => {
     component.getServiceData();
     expect(component.errorMessage).toBe('Not Found')
   });
+
+  it('should greeting set good morning', () => {
+    const expectedRes = {
+      name: 'Vijai Selvam',
+      time: 9
+    };
+    jest.spyOn(fakeServiceMock, 'getDatav1').mockReturnValue(of(expectedRes));
+    fixture.detectChanges();
+    expect(component.greeting).toBe('good morning');
+  });
+
+  it('should greeting set good day', () => {
+    const expectedRes = {
+      name: 'Vijai Selvam',
+      time: 12
+    };
+    jest.spyOn(fakeServiceMock, 'getDatav1').mockReturnValue(of(expectedRes));
+    fixture.detectChanges();
+    expect(component.greeting).toBe('good day');
+  });
+
+  it('should greeting set good evening', () => {
+    const expectedRes = {
+      name: 'Vijai Selvam',
+      time: 22
+    };
+    jest.spyOn(fakeServiceMock, 'getDatav1').mockReturnValue(of(expectedRes));
+    fixture.detectChanges();
+    expect(component.greeting).toBe('good evening');
+  });
 });
